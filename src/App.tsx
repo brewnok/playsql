@@ -11,6 +11,7 @@ import playsqllogo from './images/playsqllogo.png'
 import footerimg from './images/footerimage.png'
 
 function App() {
+
   const [tables, setTables] = useState<TableData[]>([]);
   const [queryResults, setQueryResults] = useState<QueryResult | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -22,6 +23,10 @@ function App() {
     }
   }, [tables]);
 
+
+  const handleReset = () => {
+    setQueryResults(null);
+  };
   const handleFileProcessed = (tableData: TableData) => {
     // Check if a table with the same name already exists
     const existingTableIndex = tables.findIndex(t => t.name === tableData.name);
@@ -104,7 +109,8 @@ function App() {
               <SQLEditor onRunQuery={handleRunQuery} isProcessing={isProcessing} />
             </div>
             
-            <ResultsTable results={queryResults} />
+            <ResultsTable results={queryResults}
+            onReset={handleReset}  />
           </div>
         </div>
       </main>

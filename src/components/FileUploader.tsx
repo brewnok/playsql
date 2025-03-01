@@ -120,8 +120,9 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFileProcessed }) => {
             {isProcessing ? 'Processing file...' : 'Upload your data file'}
           </h3>
           <p className="text-sm text-gray-500 mt-1">
-            Drag and drop your CSV or Excel file, or click to browse
-          </p>
+  Drag and drop your CSV or Excel file, or click to browse. <br /><span className="text-red-500 font-bold" style={{ fontFamily: 'Arial' }}>Please ensure the file name has no spaces </span> 
+</p>
+
         </div>
         <div className="flex items-center text-xs text-gray-500">
           <AlertCircle className="h-3 w-3 mr-1" />

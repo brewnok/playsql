@@ -5,9 +5,10 @@ import Papa from 'papaparse';
 
 interface ResultsTableProps {
   results: QueryResult | null;
+  onReset: () => void; 
 }
 
-const ResultsTable: React.FC<ResultsTableProps> = ({ results }) => {
+const ResultsTable: React.FC<ResultsTableProps> = ({ results, onReset }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 10;
 
@@ -68,6 +69,13 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results }) => {
             {results.data.length} rows returned
           </p>
         </div>
+        <div className="flex gap-2">
+    <button
+      onClick={onReset}
+      className="flex items-center px-3 py-1.5 bg-gray-500 hover:bg-gray-600 text-white rounded-md transition-colors"
+    >
+      Clear Table
+    </button>
         <button
           onClick={handleDownloadCSV}
           className="flex items-center px-3 py-1.5 bg-green-500 hover:bg-green-600 text-white rounded-md transition-colors"
@@ -75,6 +83,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results }) => {
           <Download className="h-4 w-4 mr-1" />
           Download CSV
         </button>
+      </div>
       </div>
 
       <div className="overflow-x-auto">
